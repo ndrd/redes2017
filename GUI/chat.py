@@ -24,7 +24,7 @@ except AttributeError:
         return QtGui.QApplication.translate(context, text, disambig)
 
 class Chat(object):
-    def setupUi(self, Chat):
+    def __init__(self, Chat):
         Chat.setObjectName(_fromUtf8("Chat"))
         Chat.resize(855, 648)
         self.centralwidget = QtGui.QWidget(Chat)

@@ -1,4 +1,6 @@
-from login_gui import *
+from login_g import *
+from chat import *
+from envelope import *
 
 from PyQt4 import QtCore, QtGui
 
@@ -16,33 +18,47 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class LoginDialog(QtGui.QDialog):
+class DialogLogin(QtGui.QDialog):
     def __init__(self,parent=None):
         QtGui.QWidget.__init__(self,parent)
-        self.ui = Ui_LoginDialog(self)
+        self.ui = Ui_DialogLogin(self)
         self.ui.lineEdit_srv.setText("127.0.0.1")
-        self.ui.lineEdit_usr.setText("347473")
-        self.ui.lineEdit_pas.setText("123456")
+        self.ui.lineEdit_srv_2.setText("")
+        self.ui.lineEdit_srv_3.setText("")
         self.setup()
+
+    def setLocalMode(self, mode):
+        self.ui.lineEdit_srv.setDisabled(mode)
+
+    def showDialog(self):
+       msg = QtGui.QMessageBox()
+       msg.setIcon(QMessageBox.Information)
+
+       msg.setText("This is a message box")
+       msg.setInformativeText("This is additional information")
+       msg.setWindowTitle("MessageBox demo")
+
+       retval = msg.exec_()
+       print "value of pressed message box button:", retval
+
     def setup(self):
         #self.ui.Dialog.setWindowFlags(QtCore.Qt.FramelessWindowHint|QtCore.Qt.WindowSystemMenuHint)
         QtCore.QObject.connect(self.ui.pushButton_log, QtCore.SIGNAL(_fromUtf8("clicked()")), self.login)
-        QtCore.QObject.connect(self.ui.pushButton_reg, QtCore.SIGNAL(_fromUtf8("clicked()")), self.openRegDlg)
     def login(self):
-        srv_ip = self.ui.lineEdit_srv.text()
-        user_no = self.ui.lineEdit_usr.text()
-        pwd = self.ui.lineEdit_pas.text()
-        if not srv_ip or not user_no or not pwd:
-            self.ui.label_error.setText(u"Enter a user or password")
+        contact_ip = self.ui.lineEdit_srv.text()
+        contact_port = self.ui.lineEdit_srv_2.text()
+        user_port = self.ui.lineEdit_srv_3.text()
+        if not contact_ip or not user_port or not contact_port:
+            self.showDialog()
             return
-        self.ui.label_error.setText(u"Un momento...")
-        msg = net.login(srv_ip, user_no, pwd)
+        # conect to 
+        msg = net.login(contact_ip, user_port, contact_port)
         if not msg or msg=='LOGIN FAIL':
             msg = u"login failed"
             self.ui.label_error.setText(msg)
         else:
             self.accept()
-            mainWin = MainWindow(srv_ip,user_no,msg)
+            mainWin = MainWindow(contact_ip,user_port,msg)
             mainWin.show()
     def openRegDlg(self):
         regDlg = RegisterDialog()

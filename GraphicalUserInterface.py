@@ -19,7 +19,7 @@ import sys, getopt
 from PyQt4 import QtCore, QtGui
 
 from GUI.chat import Chat
-from GUI.loginController import LoginDialog
+from GUI.controller import DialogLogin
 
 # **************************************************
 #  Definicion de la funcion principal
@@ -36,7 +36,9 @@ def main(argv):
         local = False
     app = QtGui.QApplication(sys.argv)
     #TODO Llamar a su ventana de login
-    login = LoginDialog()
+    login = DialogLogin()
+    if local:
+        login.setLocalMode(True)
     login.show()
     sys.exit(app.exec_())
 
