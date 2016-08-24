@@ -200,5 +200,3 @@ class Ui_DialogLogin(object):
         self.label_2.setText(_translate("DialogLogin", "¿Cuál es el puerto del contacto?", None))
         self.lineEdit_srv_3.setText(_translate("DialogLogin", "127.0.0.1", None))
         self.label_3.setText(_translate("DialogLogin", "IP", None))
-
-import img_rc

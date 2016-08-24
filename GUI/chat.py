@@ -95,5 +95,3 @@ class Ui_Dialog(object):
         Dialog.setToolTip(_translate("Dialog", "亮剑", None))
         self.sendButton.setText(_translate("Dialog", "Enviar", None))
         self.label.setText(_translate("Dialog", "Conversaciones", None))
-
-import img_rc
