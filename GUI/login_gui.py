@@ -101,9 +101,9 @@ class Ui_LoginDialog(object):
 
     def retranslateUi(self, LoginDialog):
         LoginDialog.setWindowTitle(_translate("LoginDialog", "Iniciar sesion", None))
-        self.label.setText(_translate("LoginDialog", "Server", None))
-        self.label_2.setText(_translate("LoginDialog", "User", None))
-        self.label_3.setText(_translate("LoginDialog", "Pass", None))
+        self.label.setText(_translate("LoginDialog", "IP Contacto", None))
+        self.label_2.setText(_translate("LoginDialog", "¿Cuál es mi puerto?", None))
+        self.label_3.setText(_translate("LoginDialog", "¿Cuál es el puerto de mi contacto?", None))
         self.pushButton_log.setText(_translate("LoginDialog", "Login", None))
         self.pushButton_reg.setText(_translate("LoginDialog", "Registrar", None))
 
