@@ -1,25 +1,7 @@
-from login_gui import *
-
-from PyQt4 import QtCore, QtGui
-
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
-
-try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
-
 class LoginDialog(QtGui.QDialog):
     def __init__(self,parent=None):
         QtGui.QWidget.__init__(self,parent)
-        self.ui = Ui_LoginDialog(self)
+        self.ui = Ui_DialogLogin(self)
         self.ui.lineEdit_srv.setText("127.0.0.1")
         self.ui.lineEdit_usr.setText("347473")
         self.ui.lineEdit_pas.setText("123456")
@@ -35,7 +17,9 @@ class LoginDialog(QtGui.QDialog):
         if not srv_ip or not user_no or not pwd:
             self.ui.label_error.setText(u"Enter a user or password")
             return
-        self.ui.label_error.setText(u"Un momento...")
+        print "login..." 
+        #将user_no和pwd发送到srv_ip进行验证
+        self.ui.label_error.setText(u"Entrando...")
         msg = net.login(srv_ip, user_no, pwd)
         if not msg or msg=='LOGIN FAIL':
             msg = u"login failed"
@@ -45,6 +29,7 @@ class LoginDialog(QtGui.QDialog):
             mainWin = MainWindow(srv_ip,user_no,msg)
             mainWin.show()
     def openRegDlg(self):
+        print "register..."
         regDlg = RegisterDialog()
         regDlg.exec_()
         regDlg.destroy()

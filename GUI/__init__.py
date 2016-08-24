@@ -1,1 +1,1 @@
-__all__ = ['chat', 'envelope', 'loginController', 'LoginDialog']
+__all__ = ['chat', 'envelope', 'login']
