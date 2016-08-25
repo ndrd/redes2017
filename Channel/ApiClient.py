@@ -9,7 +9,7 @@ class MyApiClient:
     def __init__(self, proxy_uri):
         if proxy_uri is not None:
             self.server = xmlrpclib.ServerProxy(proxy_uri,
-                                                    allow_none=True)
+                                                allow_none=True)
 
     def send_msg(self, message):
         print(self.server.sendMessage_wrapper(message))
