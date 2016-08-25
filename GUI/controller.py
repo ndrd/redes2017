@@ -32,7 +32,7 @@ class ChatDialog(QtGui.QDialog):
         self.contact_port =  contact_port
 
         if local:
-            self.user_ip = self.contact_ip = '127.0.0.1'
+            self.user_ip = self.contact_ip = 'localhost'
         else:
             self.user_ip = AuxiliarFunctions.get_ip_address()
             self.contact_ip = contact_ip
@@ -45,9 +45,9 @@ class ChatDialog(QtGui.QDialog):
 
     def send(self):
         msg = unicode(self.ui.textEdit.toPlainText())
+        self.ui.textEdit.clear()
         self.update_history('Yo:', msg)
         self.channel.api_client.send_msg(msg)
-        self.ui.textEdit.clear()
 
     def update_history(self, title, text):
         html = '<strong>' +  title + '</strong>' 
