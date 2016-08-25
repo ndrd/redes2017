@@ -12,7 +12,7 @@ from SimpleXMLRPCServer import *
 class MyApiServer(AuxiliarFunctions.MyThread):
 
     def __init__(self, my_ip, my_port, gui):
-        super(MyApiServer, self).__init__()
+        super(MyApiServer).__init__(MyApiServer, self)
         self.my_ip =  my_ip
         self.my_port =  my_port
 
@@ -22,7 +22,7 @@ class MyApiServer(AuxiliarFunctions.MyThread):
                         allow_none=True)
 
         self.server.register_instance(FunctionWrapper(gui, self.server))
-        self.server.register_instrospection_functions()
+        self.server.register_introspection_functions()
 
     def run(self):
         try:
@@ -40,7 +40,7 @@ class FunctionWrapper:
         self.gui =  gui
 
     def sendMessage_wrapper(self, message):
-        self.gui.update_history('\nyour friend says: ', message)
+        self.gui.update_history('Friend: ', message)
 
 
 

@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import ApiClient 
-import ApiServer 
+from ApiClient import *
+from ApiServer import *
 
 from Constants import Constants
 
@@ -20,7 +20,7 @@ class Channel:
 		self.user_ip = user_ip
 		self.user_port = user_port
 		self.api_server = MyApiServer(user_ip, user_port, gui)
-		self.api_client = MyApiClient(self.proxy)
+		self.api_client = MyApiClient(str(self.proxy))
 
 	def send_text(self, txt):
 		self.api_client.send_msg(txt)

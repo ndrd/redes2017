@@ -1,6 +1,8 @@
 from login_g import *
 from chat_g import *
+
 from Channel import *
+
 from PyQt4 import QtCore, QtGui
 from Constants import Constants
 from Constants import AuxiliarFunctions
@@ -23,10 +25,39 @@ class ChatDialog(QtGui.QDialog):
     def __init__(self,local, user_port, contact_ip, contact_port,parent=None):
         QtGui.QWidget.__init__(self,parent)
         self.ui = Ui_ChatDialog(self)
+        self.setup();
+        self.history = ''
 
-        if not local:
+        self.user_port =  user_port
+        self.contact_port =  contact_port
+
+        if local:
+            self.user_ip = self.contact_ip = '127.0.0.1'
+        else:
             self.user_ip = AuxiliarFunctions.get_ip_address()
-            print(self.user_ip)
+            self.contact_ip = contact_ip
+
+        self.channel = Channel.Channel(self.user_ip,
+                                       self.user_port,
+                                       self.contact_ip,
+                                       self.contact_port,
+                                       self)
+
+    def send(self):
+        msg = unicode(self.ui.textEdit.toPlainText())
+        self.update_history('Yo:', msg)
+        self.channel.api_client.send_msg(msg)
+        self.ui.textEdit.clear()
+
+    def update_history(self, title, text):
+        html = '<strong>' +  title + '</strong>' 
+        html += '<span>' +  text + '</span><br/>' 
+        self.history += html
+        self.ui.textBrowser.clear()
+        self.ui.textBrowser.setHtml(self.history)
+
+    def setup(self):
+        QtCore.QObject.connect(self.ui.sendButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.send)
 
 
 
