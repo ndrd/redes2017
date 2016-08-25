@@ -23,11 +23,11 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Chat(object):
-    def __init__(self, Chat):
-        Chat.setObjectName(_fromUtf8("Chat"))
-        Chat.resize(855, 648)
-        self.centralwidget = QtGui.QWidget(Chat)
+class Ui_Chat(object):
+    def __init__(self, ChatWindow):
+        ChatWindow.setObjectName(_fromUtf8("ChatWindow"))
+        ChatWindow.resize(855, 648)
+        self.centralwidget = QtGui.QWidget(ChatWindow)
         self.centralwidget.setEnabled(True)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -84,13 +84,13 @@ class Chat(object):
         self.leUrl = QtGui.QLineEdit(self.verticalLayoutWidget)
         self.leUrl.setObjectName(_fromUtf8("leUrl"))
         self.verticalLayout.addWidget(self.leUrl)
-        Chat.setCentralWidget(self.centralwidget)
+        ChatWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(Chat)
-        QtCore.QMetaObject.connectSlotsByName(Chat)
+        self.retranslateUi(ChatWindow)
+        QtCore.QMetaObject.connectSlotsByName(ChatWindow)
 
-    def retranslateUi(self, Chat):
-        Chat.setWindowTitle(_translate("Chat", "Chat", None))
+    def retranslateUi(self, ChatWindow):
+        ChatWindow.setWindowTitle(_translate("Chat", "Chat", None))
         self.btnSend.setText(_translate("Chat", "Send", None))
         self.btnAuth.setText(_translate("Chat", "Auth", None))
 

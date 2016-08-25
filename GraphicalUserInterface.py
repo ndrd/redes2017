@@ -18,7 +18,6 @@ import sys, getopt
 
 from PyQt4 import QtCore, QtGui
 
-from GUI.chat import Chat
 from GUI.controller import DialogLogin
 
 # **************************************************
