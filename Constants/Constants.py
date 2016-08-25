@@ -1,4 +1,6 @@
 #! /usr/bin/env python
-
+DEFAULT_USER_PORT = 6565
+DEFAULT_CONTACT_PORT = 6566
+DEFUALT_HOST='localhost'
 #TODO
 

@@ -1,6 +1,11 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import ApiClient 
+import ApiServer 
+
+from Constants import Constants
+
 """**************************************************
 Las instancias de esta clase contendran los metodos
 necesarios para hacer uso de los metodos
@@ -9,23 +14,14 @@ con una proxy apuntando hacia los servicios del
 servidor xmlrpc del contacto
 **************************************************"""
 class Channel:
- """**************************************************
-    Constructor de la clase
-    @param <str> contact_ip: Si no se trabaja de manera local
-                representa la ip del contacto con el que se
-                establecera la conexion
-    @param <int> my_port: De trabajar de manera local puerto
-                de la instancia del cliente
-    @param <int> contact_port: De trabajar de manera local
-                representa el puerto de la instancia del contacto
-    **************************************************"""
-    def __init__(self, contact_ip = None, contact_port = None):
-        #TODO
+	def __init__(self, user_ip, user_port,
+				contact_ip, contact_port, gui):
+		self.proxy = 'http://' + contact_ip + ':' +  contact_port
+		self.user_ip = user_ip
+		self.user_port = user_port
+		self.api_server = MyApiServer(user_ip, user_port, gui)
+		self.api_client = MyApiClient(self.proxy)
 
-        """**************************************************
-    Metodo que se encarga de mandar texto al contacto con
-    el cual se estableció la conexion
-    **************************************************"""
-    def send_text(self, text):
-        #TODO
+	def send_text(self, txt):
+		self.api_client.send_msg(txt)
 
