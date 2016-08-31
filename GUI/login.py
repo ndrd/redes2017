@@ -4,7 +4,7 @@ import sys
 
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import Qt
-
+from chat import *
 #from chat import *
 
 class Login(QtGui.QMainWindow):
@@ -18,25 +18,25 @@ class Login(QtGui.QMainWindow):
         self.label1.resize(350,35)
         self.label1.move(20,10)
 
-        self.line = QtGui.QLineEdit(self)
-        self.line.resize(350,35)
-        self.line.move(20,40)
+        self.my_port = QtGui.QLineEdit(self)
+        self.my_port.resize(350,35)
+        self.my_port.move(20,40)
 
         self.label2 = QtGui.QLabel('Puerto contacto:', self)
         self.label2.resize(350,35)
         self.label2.move(20,75)
 
-        self.line2 = QtGui.QLineEdit(self)
-        self.line2.resize(350,35)
-        self.line2.move(20,100)
+        self.cnt_prt = QtGui.QLineEdit(self)
+        self.cnt_prt.resize(350,35)
+        self.cnt_prt.move(20,100)
 
         self.label3 = QtGui.QLabel('IP contacto:', self)
         self.label3.resize(350,35)
         self.label3.move(20,135)
 
-        self.line3 = QtGui.QLineEdit(self)
-        self.line3.resize(350,35)
-        self.line3.move(20,165)
+        self.cnt_ip = QtGui.QLineEdit(self)
+        self.cnt_ip.resize(350,35)
+        self.cnt_ip.move(20,165)
 
         self.start = QtGui.QPushButton("Iniciar", self)
         self.start.resize(350,45)
@@ -49,16 +49,13 @@ class Login(QtGui.QMainWindow):
         self.setWindowIcon(QtGui.QIcon(""))
 
         if self.isLocal:
-            self.line3.setEnabled(False)
-            self.line3.setText('127.0.0.1')
+            self.cnt_ip.setEnabled(False)
+            self.cnt_ip.setText('127.0.0.1')
 
         self.show()
 
     def initChat(self):
-        # self.chat = Chat(local=True,
-        #                  local_port=self.line.text(),
-        #                  cont_ip=None,
-        #                  cont_port=self.line2.text())
+        a = Chat(local=self.isLocal,local_port=self.my_port.text(),cont_ip=self.cnt_ip.text(),cont_port=self.cnt_prt.text())
         self.close()
 
 
