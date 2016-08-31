@@ -45,6 +45,7 @@ class FunctionWrapper:
     ************************************************** """
     def sendMessage_wrapper(self, message):
         print "El:"+ message+"\n"
+        self.gui.emit(QtCore.SIGNAL("agregarMensaje(QString)"), message)
         self.gui.update_history('Eso dijo:', message);
     """ **************************************************
     Procedimiento que ofrece nuestro servidor, este metodo sera llamado

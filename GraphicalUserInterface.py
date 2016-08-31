@@ -18,7 +18,7 @@ import sys, getopt
 
 from PyQt4 import QtCore, QtGui
 
-from GUI.controller import DialogLogin
+from GUI.login import Login
 
 # **************************************************
 #  Definicion de la funcion principal
@@ -32,13 +32,11 @@ def main(argv):
         local = True if '-l' in opts[0] else False
     else:
         local = False
+
     app = QtGui.QApplication(sys.argv)
-    #TODO Llamar a su ventana de login
-    login = DialogLogin()
-    if local:
-        login.setLocalMode(True)
-    login.show()
+    login = Login(local)
     sys.exit(app.exec_())
+
 
 
 if __name__ == '__main__':
