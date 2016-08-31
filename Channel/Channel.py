@@ -22,6 +22,7 @@ class Channel:
 		self.api_server = MyApiServer(user_ip, user_port, gui)
 		self.api_client = MyApiClient(str(self.proxy))
 		print str(self.proxy)
+		self.api_server.start()
 
 	def send_text(self, txt):
 		self.api_client.send_msg(txt)
