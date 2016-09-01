@@ -18,7 +18,7 @@ import sys, getopt
 
 from PyQt4 import QtCore, QtGui
 
-from GUI.login import Login
+from GUI.LoginWindow import Login
 
 # **************************************************
 #  Definicion de la funcion principal

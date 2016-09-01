@@ -1,6 +1,19 @@
 #! /usr/bin/env python
-DEFAULT_USER_PORT = 6565
-DEFAULT_CONTACT_PORT = 6566
-DEFUALT_HOST='localhost'
+
+
+#####################################################
+# PURPOSE: Archivo con constantes                   #
+#                                                   #
+# Vilchis Dominguez Miguel Alonso                   #
+#       <mvilchis@ciencias.unam.mx>                 #
+#                                                   #
+# Notes:                                            #
+#                                                   #
+# Copyright   16-08-2015                            #
+#                                                   #
+# Distributed under terms of the MIT license.       #
+#####################################################
+CHAT_PORT = '5000'
+
 #TODO
 

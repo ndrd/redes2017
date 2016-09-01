@@ -4,7 +4,8 @@ import sys
 
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import Qt
-from chat import *
+from ChatWindow import *
+from Constants import Constants
 #from chat import *
 
 class Login(QtGui.QMainWindow):
@@ -51,6 +52,9 @@ class Login(QtGui.QMainWindow):
         if self.isLocal:
             self.cnt_ip.setEnabled(False)
             self.cnt_ip.setText('127.0.0.1')
+        else:
+            self.my_port.setText(Constants.CHAT_PORT)
+            self.cnt_prt.setText(Constants.CHAT_PORT)
 
         self.show()
 

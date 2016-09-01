@@ -3,6 +3,11 @@
 
 from ApiClient import *
 from ApiServer import *
+from RecordAudio import *
+
+import numpy
+import multiprocessing as mp
+import xmlrpclib
 
 from Constants import Constants
 
@@ -19,10 +24,25 @@ class Channel:
 		self.proxy = 'http://' + contact_ip + ':' +  contact_port
 		self.user_ip = user_ip
 		self.user_port = user_port
-		self.api_server = MyApiServer(user_ip, user_port, gui)
+		self.api_server = MyApiServer(user_ip, user_port, Functions(gui))
 		self.api_client = MyApiClient(str(self.proxy))
+		self.queue = mp.Queue()
+		self.recorder = Recorder(self.queue)
+		self.call_in_course = False
+		self.call_process = None
 		self.api_server.start()
 
 	def send_text(self, txt):
 		self.api_client.send_msg(txt)
 
+	def stop_call(self):
+		if self.recorder.is_alive():
+			self.recorder.terminate()
+
+
+	def start_call(self):
+		self.recorder.start()
+		while True:
+		    d = self.queue.get()
+		    data = xmlrpclib.Binary(d)
+		    self.api_client.play_audio(data)
