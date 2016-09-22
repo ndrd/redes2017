@@ -19,8 +19,10 @@
 Graba audio y manda el stream de video
 
 """
+from threading import Thread
+
 import numpy as np
-import cv
+import cv2
 import multiprocessing as mp
 import time
 import xmlrpclib
@@ -30,9 +32,9 @@ from numpy.lib import format
 
 class VideoRecorder(Thread):
     def __init__(self, queue):
-        super(Recorder, self).__init__()
+        super(VideoRecorder, self).__init__()
         self.queue = queue
-        self.cap = cv.VideoCapture(0)
+        self.cap = cv2.VideoCapture(0)
 
     def toString(data):
         f = StringIO()

@@ -46,13 +46,13 @@ class Channel:
 	def start_call(self):
 		self.recorder.start()
 		while True:
-		    d = self.queue.get()
-		    data = xmlrpclib.Binary(d)
-		    self.api_client.play_audio(data)
+			d = self.queue.get()
+			data = xmlrpclib.Binary(d)
+			self.api_client.play_audio(data)
 
-    def start_video_call(self):
-    	self.video_recorder.start()
-    	while True:
-    	    d = self.video_queue.get()
-    	    data = xmlrpclib.Binary(d)
-    	    self.api_client.play_video(data)
+	def start_video_call(self):
+		self.video_recorder.start()
+		while True:
+			d = self.video_queue.get()
+			data = xmlrpclib.Binary(d)
+			self.api_client.play_video(data)

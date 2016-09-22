@@ -44,21 +44,21 @@ class Chat(QtGui.QMainWindow):
         self.box.move(10,420)
 
         self.send = QtGui.QPushButton("Send", self)
-        self.call.resize(70,45)
-        self.call.move(400,420)
+        self.send.resize(70,45)
+        self.send.move(400,420)
 
         self.connect(self.send, QtCore.SIGNAL("clicked()"), self.sendMsg)
 
         self.call = QtGui.QPushButton("Call", self)
-        self.send.resize(70,45)
-        self.send.move(480,420)
+        self.call.resize(70,45)
+        self.call.move(480,420)
         self.connect(self.call, QtCore.SIGNAL("clicked()"), self.startCall)
 
 
-        self.call = QtGui.QPushButton("Video", self)
-        self.call.resize(70,45)
-        self.call.move(550,420)
-        self.connect(self.call, QtCore.SIGNAL("clicked()"), self.startVideoCall)
+        self.video = QtGui.QPushButton("Video", self)
+        self.video.resize(70,45)
+        self.video.move(550,420)
+        self.connect(self.video, QtCore.SIGNAL("clicked()"), self.startVideoCall)
 
         self.setGeometry(300,300,640,480)
         self.setFixedSize(640,480)
@@ -87,13 +87,10 @@ class Chat(QtGui.QMainWindow):
     def startVideoCall(self):
         MESSAGE = "enlanzando..."
         self.channel.start_video_call()
-        #ventana de recepcion
-        playVThread = threading.Thread(target=self.reproduce)
-        playVThread.setDaemon(True)
-        playVThread.start()
         #code = QtGui.QMessageBox.about(self, "Sobre o LabControle2", MESSAGE)
         video_widget = VideoWidget(this)
         video_widget.open()
+        self.reproduce()
 
     def reproduce(self):
         while True:
