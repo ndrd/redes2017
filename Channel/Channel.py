@@ -4,6 +4,7 @@
 from ApiClient import *
 from ApiServer import *
 from RecordAudio import *
+from RecordVideo import *
 
 import numpy
 import multiprocessing as mp
@@ -27,7 +28,9 @@ class Channel:
 		self.api_server = MyApiServer(user_ip, user_port, Functions(gui))
 		self.api_client = MyApiClient(str(self.proxy))
 		self.queue = mp.Queue()
+		self.video_queue = mp.Queue()
 		self.recorder = Recorder(self.queue)
+		self.video_recorder = VideoRecorder(self.video_queue)
 		self.call_in_course = False
 		self.call_process = None
 		self.api_server.start()
@@ -46,3 +49,10 @@ class Channel:
 		    d = self.queue.get()
 		    data = xmlrpclib.Binary(d)
 		    self.api_client.play_audio(data)
+
+    def start_video_call(self):
+    	self.video_recorder.start()
+    	while True:
+    	    d = self.video_queue.get()
+    	    data = xmlrpclib.Binary(d)
+    	    self.api_client.play_video(data)

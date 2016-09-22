@@ -17,5 +17,8 @@ class MyApiClient:
     def play_audio(self, data):
     	print self.server.playAudio(data)
 
+    def play_video(self, data):
+        print self.server.playVideo(data)
+
     def request_incomming_call(self):
     	print (self.server.request_incoming_call())

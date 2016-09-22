@@ -1,1 +1,1 @@
-__all__ = ['ApiClient', 'ApiServer', 'RecordAudio', 'Channel']
+__all__ = ['ApiClient', 'ApiServer', 'RecordAudio', 'RecordVideo', 'Channel']

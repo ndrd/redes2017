@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys
+import cv2
 
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import Qt
@@ -49,6 +50,7 @@ class Functions:
         self.gui =  gui
         self.call_acepted = False
         self.call_waiting = False
+        self.frames = [] 
         print "Se construye las funciones"
    
     """ **************************************************
@@ -91,6 +93,12 @@ class Functions:
         stream.close()
         p.terminate()
         return 'audio recibido'
+
+    def playVideo(self, video):
+        self.frames.append(toArray(video.data))
+
+
+
 
 
 
