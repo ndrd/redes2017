@@ -27,17 +27,20 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv, "l", ["local="])
     except getopt.GetoptError:
-        print('Error')
+        print 'Uso con puertos locales:'
+        print 'GraphicalUserInterface -l'
+        print 'Uso entre computadoras dentro de la red'
+        print 'GraphicalUserInterface'
+        sys.exit(2)
     if opts: #Si el usuario mandó alguna bandera
         local = True if '-l' in opts[0] else False
     else:
         local = False
-
     app = QtGui.QApplication(sys.argv)
-    login = Login(local)
+    mainWindow = Login(local=local)
     sys.exit(app.exec_())
-
 
 
 if __name__ == '__main__':
     main(sys.argv[1:])
+

@@ -9,9 +9,9 @@ from Constants import Constants
 #from chat import *
 
 class Login(QtGui.QMainWindow):
-    def __init__(self, isLocal=False):
+    def __init__(self, local=False):
         QtGui.QMainWindow.__init__(self)
-        self.isLocal = isLocal
+        self.isLocal = local
         self.initUI()
 
     def initUI(self):
@@ -53,8 +53,8 @@ class Login(QtGui.QMainWindow):
             self.cnt_ip.setEnabled(False)
             self.cnt_ip.setText('127.0.0.1')
         else:
-            self.my_port.setText(Constants.CHAT_PORT)
-            self.cnt_prt.setText(Constants.CHAT_PORT)
+            self.my_port.setText(str(Constants.CHAT_PORT))
+            self.cnt_prt.setText(str(Constants.CHAT_PORT))
 
         self.show()
 
