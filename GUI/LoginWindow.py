@@ -15,7 +15,7 @@ class Login(QtGui.QMainWindow):
         self.initUI()
 
     def initUI(self):
-        self.label1 = QtGui.QLabel('Mi puerto:', self)
+        self.label1 = QtGui.QLabel('Puerto directorio:', self)
         self.label1.resize(350,35)
         self.label1.move(20,10)
 
@@ -23,21 +23,21 @@ class Login(QtGui.QMainWindow):
         self.my_port.resize(350,35)
         self.my_port.move(20,40)
 
-        self.label2 = QtGui.QLabel('Puerto contacto:', self)
-        self.label2.resize(350,35)
-        self.label2.move(20,75)
-
-        self.cnt_prt = QtGui.QLineEdit(self)
-        self.cnt_prt.resize(350,35)
-        self.cnt_prt.move(20,100)
-
-        self.label3 = QtGui.QLabel('IP contacto:', self)
+        self.label3 = QtGui.QLabel('IP directorio:', self)
         self.label3.resize(350,35)
-        self.label3.move(20,135)
+        self.label3.move(20,75)
 
         self.cnt_ip = QtGui.QLineEdit(self)
         self.cnt_ip.resize(350,35)
-        self.cnt_ip.move(20,165)
+        self.cnt_ip.move(20,100)
+
+        self.label4 = QtGui.QLabel('Nombre de usuario:', self)
+        self.label4.resize(350,35)
+        self.label4.move(20,135)
+
+        self.username = QtGui.QLineEdit(self)
+        self.username.resize(350,35)
+        self.username.move(20,160)
 
         self.start = QtGui.QPushButton("Iniciar", self)
         self.start.resize(350,45)
@@ -54,12 +54,15 @@ class Login(QtGui.QMainWindow):
             self.cnt_ip.setText('127.0.0.1')
         else:
             self.my_port.setText(str(Constants.CHAT_PORT))
-            self.cnt_prt.setText(str(Constants.CHAT_PORT))
 
         self.show()
 
     def initChat(self):
-        a = Chat(local=self.isLocal,local_port=self.my_port.text(),cont_ip=self.cnt_ip.text(),cont_port=self.cnt_prt.text())
+        a = Chat(local=self.isLocal,
+                server_port=self.my_port.text(),
+                server_ip=self.cnt_ip.text(),
+                username=self.username.text())
+        self.setParent(a)
         self.close()
 
 
